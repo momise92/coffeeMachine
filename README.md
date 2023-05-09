@@ -1,11 +1,14 @@
 # Coffee Machine Project
+
+https://simcap.github.io/coffeemachine/
+
 ## coffeeMachineFirst iteration - Making drinks
 
 In this iteration, your task is to implement the logic (starting from a simple class) that translates orders from customers of the coffee machine to the drink maker. Your code will use the drink maker protocol (see below) to send commands to the drink maker.
 
 The coffee machine can serves 3 type of drinks: tea, coffee, chocolate.
 
-Use cases
+### Use cases
 Your product owner has delivered the stories and here they are:
 
 The drink maker should receive the correct instructions for my coffee / tea / chocolate order
@@ -14,14 +17,14 @@ When my order contains sugar the drink maker should add a stick (touillette) wit
 Drink maker protocol
 The drink maker receives string commands from your code to make the drinks. It can also deliver info messages to the customer if ordered so. The instructions it receives follow this format:
 
-"T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
-"H::" (Drink maker makes 1 chocolate with no sugar - 
+> "T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
+> "H::" (Drink maker makes 1 chocolate with no sugar - 
 				and therefore no stick)
-"C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
-"M:message-content" (Drink maker forwards any message received
+> "C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
+> "M:message-content" (Drink maker forwards any message received
 				onto the coffee machine interface 
 				for the customer to see)
-Implementation details
+### Implementation details
 You can represent the incoming order of the customer as you wish. For instance, it could be a simple POJO that contains the order details, or a simple String, try to think of the simplest thing that do the job. Complex matters will arrive soon enough, trust us.
 First iteration - Making drinks
 
@@ -38,14 +41,14 @@ When my order contains sugar the drink maker should add a stick (touillette) wit
 Drink maker protocol
 The drink maker receives string commands from your code to make the drinks. It can also deliver info messages to the customer if ordered so. The instructions it receives follow this format:
 
-"T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
-"H::" (Drink maker makes 1 chocolate with no sugar - 
+> "T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
+> "H::" (Drink maker makes 1 chocolate with no sugar - 
 				and therefore no stick)
-"C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
-"M:message-content" (Drink maker forwards any message received
+> "C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
+> "M:message-content" (Drink maker forwards any message received
 				onto the coffee machine interface 
 				for the customer to see)
-Implementation details
+### Implementation details
 You can represent the incoming order of the customer as you wish. For instance, it could be a simple POJO that contains the order details, or a simple String, try to think of the simplest thing that do the job. Complex matters will arrive soon enough, trust us.
 
 ## Second iteration - Going into business
@@ -57,7 +60,7 @@ The drink maker will now only make a drink if enough money is given for it
 ### Use cases
 The drink maker should make the drinks only if the correct amount of money is given
 If not enough money is provided, we want to send a message to the drink maker. The message should contains at least the amount of money missing.
-Important
+**Important**
 Remember that the drink maker forwards any message received onto the coffee machine interface for the customer to see.
 
 If too much money is given, the drink maker will still make the drink according to the instructions. The machine will handle the return of the correct change. So do not worry about that.
@@ -75,8 +78,8 @@ I want to be able to buy a orange juice for 0,6 euro
 I want to be able to have my coffee, chocolate or tea extra hot
 Implementation details
 Here are the new protocol commands added to the new firmware of the drink maker:
-**/
-"O::" (Drink maker will make one orange juice)
-"Ch::" (Drink maker will make an extra hot coffee with no sugar)
-"Hh:1:0" (Drink maker will make an extra hot chocolate with one sugar and a stick)
-"Th:2:0" (The drink maker will make an extra hot tea with two sugar and a stick)
+
+> "O::" (Drink maker will make one orange juice)
+> "Ch::" (Drink maker will make an extra hot coffee with no sugar)
+> "Hh:1:0" (Drink maker will make an extra hot chocolate with one sugar and a stick)
+> "Th:2:0" (The drink maker will make an extra hot tea with two sugar and a stick)
