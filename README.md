@@ -1,6 +1,6 @@
 # Coffee Machine Project
 
-https://simcap.github.io/coffeemachine/
+## Introduction 👉 [Coffee Machine Kata](https://simcap.github.io/coffeemachine/)
 
 ## coffeeMachineFirst iteration - Making drinks
 
