@@ -18,12 +18,13 @@ Drink maker protocol
 The drink maker receives string commands from your code to make the drinks. It can also deliver info messages to the customer if ordered so. The instructions it receives follow this format:
 
 > "T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
-> "H::" (Drink maker makes 1 chocolate with no sugar - 
-				and therefore no stick)
+> 
+> "H::" (Drink maker makes 1 chocolate with no sugar - and therefore no stick)
+> 
 > "C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
-> "M:message-content" (Drink maker forwards any message received
-				onto the coffee machine interface 
-				for the customer to see)
+> 
+> "M:message-content" (Drink maker forwards any message received onto the coffee machine interface 
+> for the customer to see)
 ### Implementation details
 You can represent the incoming order of the customer as you wish. For instance, it could be a simple POJO that contains the order details, or a simple String, try to think of the simplest thing that do the job. Complex matters will arrive soon enough, trust us.
 First iteration - Making drinks
@@ -42,9 +43,11 @@ Drink maker protocol
 The drink maker receives string commands from your code to make the drinks. It can also deliver info messages to the customer if ordered so. The instructions it receives follow this format:
 
 > "T:1:0" (Drink maker makes 1 tea with 1 sugar and a stick)
-> "H::" (Drink maker makes 1 chocolate with no sugar - 
-				and therefore no stick)
+> 
+> "H::" (Drink maker makes 1 chocolate with no sugar - and therefore no stick)
+> 
 > "C:2:0" (Drink maker makes 1 coffee with 2 sugars and a stick)
+> 
 > "M:message-content" (Drink maker forwards any message received
 				onto the coffee machine interface 
 				for the customer to see)
@@ -80,6 +83,9 @@ Implementation details
 Here are the new protocol commands added to the new firmware of the drink maker:
 
 > "O::" (Drink maker will make one orange juice)
+> 
 > "Ch::" (Drink maker will make an extra hot coffee with no sugar)
+> 
 > "Hh:1:0" (Drink maker will make an extra hot chocolate with one sugar and a stick)
+> 
 > "Th:2:0" (The drink maker will make an extra hot tea with two sugar and a stick)
