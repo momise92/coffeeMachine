@@ -136,7 +136,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void order_coffee_extra_hot_should() {
+    public void order_coffee_extra_hot_with_1_sugar() {
         //given
         DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.6f);
@@ -144,9 +144,9 @@ public class DrinkMakerTest {
         Coffee coffee = new Coffee();
         coffee.setExtraHot(true);
         //when
-        String codeReceived = drinkMaker.make(coffee);
+        String codeReceived = drinkMaker.make(coffee,1);
         //then
-        Assertions.assertEquals("Ch::", codeReceived);
+        Assertions.assertEquals("Ch:1:0", codeReceived);
     }
 
 }
