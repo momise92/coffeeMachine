@@ -63,9 +63,10 @@ public class DrinkMakerTest {
         //given
         DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
+        Sugar sugar = new Sugar(1);
         drinkMaker.setMoney(money);
         //when
-        String codeReceived = drinkMaker.make(new Tea(), 1);
+        String codeReceived = drinkMaker.make(new Tea(), sugar);
         //then
         Assertions.assertEquals("T:1:0", codeReceived);
     }
@@ -75,9 +76,10 @@ public class DrinkMakerTest {
         //given
         DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
+        Sugar sugar = new Sugar(0);
         drinkMaker.setMoney(money);
         //when
-        String codeReceived = drinkMaker.make(new Tea(), 0);
+        String codeReceived = drinkMaker.make(new Tea(), sugar);
         //then
         Assertions.assertEquals("T::", codeReceived);
     }
@@ -140,11 +142,12 @@ public class DrinkMakerTest {
         //given
         DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.6f);
+        Sugar sugar = new Sugar(1);
         drinkMaker.setMoney(money);
         Coffee coffee = new Coffee();
         coffee.setExtraHot(true);
         //when
-        String codeReceived = drinkMaker.make(coffee,1);
+        String codeReceived = drinkMaker.make(coffee, sugar);
         //then
         Assertions.assertEquals("Ch:1:0", codeReceived);
     }

@@ -1,7 +1,5 @@
 package org.example.model;
 
-import java.math.BigDecimal;
-
 public class Coffee implements Drink, ExtraHotInterface {
     private final String CODE = "C";
     private boolean extraHot = false;

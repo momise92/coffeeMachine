@@ -8,11 +8,10 @@ public class DrinkMaker {
     }
 
     public String make(Drink drink) {
-        return make(drink, 0);
+        return make(drink, new Sugar(0));
     }
 
-    public String make(Drink drink, int numberSugar) {
-        Sugar sugar = new Sugar(numberSugar);
+    public String make(Drink drink, Sugar sugar) {
 
         if(drink == null) {
             return Message.CHOOSE_DRINK;
