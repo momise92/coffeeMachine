@@ -30,39 +30,4 @@ public class Order {
     public Sugar getSugar() {
         return sugar;
     }
-
-
-//    public String orderHotDrink(Money money, DrinkType drink, Sugar sugar) {
-//        if (money == null || drink == null || sugar == null) {
-//            return Message.ERROR;
-//        }
-//        if (money.getAmount() < drink.getPrice()) {
-//            float amountSubtracted = money.getAmount() - drink.getPrice();
-//            return Message.insufficientMessage(amountSubtracted);
-//        }
-//        return DrinkMaker.makeDrink(money.getAmount(), drink, sugar);
-//    }
-//
-//    public String orderExtraHotDrink(Money money, DrinkType drink, Sugar sugar, boolean isExtraHot) {
-//        if (money == null || drink == null || sugar == null) {
-//            return Message.ERROR;
-//        }
-//        if (money.getAmount() < drink.getPrice()) {
-//            float amountSubtracted = money.getAmount() - drink.getPrice();
-//            return Message.insufficientMessage(amountSubtracted);
-//        }
-//        return DrinkMaker.makeDrink(money.getAmount(), drink, sugar, isExtraHot);
-//
-//    }
-//
-//    public String orderDrink(Money money, DrinkType drink) {
-//        if (money == null || drink == null) {
-//            return Message.ERROR;
-//            if (money.getAmount() < drink.getPrice()) {
-//                float amountSubtracted = money.getAmount() - drink.getPrice();
-//                return Message.insufficientMessage(amountSubtracted);
-//            }
-//            return DrinkMaker.makeDrink(money.getAmount(), drink);
-//        }
-//    }
 }

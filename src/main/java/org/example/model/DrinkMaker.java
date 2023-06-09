@@ -15,33 +15,6 @@ public class DrinkMaker {
         return order.getDrink().getCode() + Message.SEPARATOR + order.getSugar().getCode();
     }
 
-//    public static String makeDrink(float amount, DrinkType drink) {
-//        String message = checkOrder(amount, drink);
-//        if (!message.isEmpty()) return message;
-//
-//        return drink.getCode() + Message.DOUBLE_SEPARATOR;
-//    }
-//
-//    public static String makeDrink(float amount, DrinkType drink, Sugar sugar) {
-//        String message = checkOrder(amount, drink);
-//        if (!message.isEmpty()) return message;
-//
-//        if (sugar.getSugarNumber() < 1) {
-//            return makeDrink(amount, drink);
-//        }
-//
-//        return drink.getCode() + Message.SEPARATOR + sugar.getCode();
-//    }
-//
-//    public static String makeDrink(float amount, DrinkType drink, Sugar sugar, boolean extraHot) {
-//        String message = checkOrder(amount, drink);
-//        if (!message.isEmpty()) return message;
-//
-//        drink.setExtraHot(extraHot);
-//
-//        return makeDrink(amount, drink, sugar);
-//    }
-
     private static String checkOrder(Money money, DrinkType drink, Sugar sugar) {
         String message = "";
 
