@@ -1,8 +1,9 @@
 package org.example.model;
 
-public class Sugar implements StickInterface {
+public class Sugar {
 
     private int sugarNumber;
+    private final String stickCode = "0";
 
     public Sugar(int number) {
         this.sugarNumber = number;
@@ -13,6 +14,6 @@ public class Sugar implements StickInterface {
     }
 
     public String getCode() {
-        return sugarNumber > 0 ? sugarNumber + Message.SEPARATOR + getStickCode() : "";
+        return sugarNumber > 0 ? sugarNumber + Message.SEPARATOR + stickCode : "";
     }
 }

@@ -10,8 +10,4 @@ public class Money {
     public float getAmount() {
         return amount;
     }
-
-    public float subtractAmount(float price) {
-        return amount - price;
-    }
 }

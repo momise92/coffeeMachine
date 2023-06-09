@@ -1,8 +1,6 @@
 package org.example.model;
 
-import java.math.BigDecimal;
-
-public class Chocolate implements Drink, ExtraHotInterface {
+public class Chocolate implements IDrink, ExtraHotInterface {
 
     private final String CODE = "H";
     private boolean extraHot = false;
@@ -16,7 +14,7 @@ public class Chocolate implements Drink, ExtraHotInterface {
     }
 
     @Override
-    public float price() {
+    public float getPrice() {
         return 0.5f;
     }
 

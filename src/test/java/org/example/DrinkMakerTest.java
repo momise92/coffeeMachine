@@ -10,12 +10,12 @@ public class DrinkMakerTest {
     @Test
     public void order_tea_should_make_a_tea() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
-        drinkMaker.setMoney(money);
-        Tea tea = new Tea();
+        Sugar sugar = new Sugar(0);
+        DrinkType drinkType = DrinkType.TEA;
+        Order order = Order.orderDrink(money, drinkType, sugar);
         //when
-        String codeReceived = drinkMaker.make(tea);
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("T::", codeReceived);
     }
@@ -23,12 +23,13 @@ public class DrinkMakerTest {
     @Test
     public void order_coffee_should_make_a_coffee() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.6f);
-        drinkMaker.setMoney(money);
-
+        Sugar sugar = new Sugar(0);
+        DrinkType drinkType = DrinkType.COFFEE;
+        drinkType.setExtraHot(false);
+        Order order = Order.orderDrink(money, drinkType, sugar);
         //when
-        String codeReceived = drinkMaker.make(new Coffee());
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("C::", codeReceived);
     }
@@ -36,37 +37,35 @@ public class DrinkMakerTest {
     @Test
     public void order_chocolate_should_make_a_chocolate() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.5f);
-        drinkMaker.setMoney(money);
-
+        Sugar sugar = new Sugar(0);
+        Order order = Order.orderDrink(money, DrinkType.CHOCOLATE, sugar);
         //when
-        String codeReceived = drinkMaker.make(new Chocolate());
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("H::", codeReceived);
     }
 
     @Test
-    public void order_null_should_return_message() {
+    public void drink_null_should_return_message() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.1f);
-        drinkMaker.setMoney(money);
+        Sugar sugar = new Sugar(0);
+        Order order = Order.orderDrink(money, null, sugar);
         //when
-        String codeReceived = drinkMaker.make(null);
+        String codeReceived = DrinkMaker.make(order);
         //then
-        Assertions.assertEquals("M:Please choose a drink", codeReceived);
+        Assertions.assertEquals(Message.ERROR, codeReceived);
     }
 
     @Test
     public void order_tea_with_1_sugar_should_make_tea_with_1_sugar_and_stick() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
         Sugar sugar = new Sugar(1);
-        drinkMaker.setMoney(money);
+        Order order = Order.orderDrink(money, DrinkType.TEA, sugar);
         //when
-        String codeReceived = drinkMaker.make(new Tea(), sugar);
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("T:1:0", codeReceived);
     }
@@ -74,38 +73,27 @@ public class DrinkMakerTest {
     @Test
     public void order_tea_with_0_sugar_should_make_tea() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
         Sugar sugar = new Sugar(0);
-        drinkMaker.setMoney(money);
+        DrinkType drinkType = DrinkType.TEA;
+        drinkType.setExtraHot(false);
+        Order order = Order.orderDrink(money, drinkType, sugar);
         //when
-        String codeReceived = drinkMaker.make(new Tea(), sugar);
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("T::", codeReceived);
     }
 
-    @Test
-    public void order_tea_with_correct_amount_should_make_tea() {
-        //given
-        DrinkMaker drinkMaker = new DrinkMaker();
-        Money money = new Money(0.4f);
-        drinkMaker.setMoney(money);
-        //when
-        String codeReceived = drinkMaker.make(new Tea());
-        //then
-        Assertions.assertEquals("T::", codeReceived);
-    }
 
     @Test
     public void order_tea_with_incorrect_amount_should_return_message() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.1f);
-        drinkMaker.setMoney(money);
-        Drink tea = new Tea();
+        Sugar sugar = new Sugar(0);
+        Order order = Order.orderDrink(money, DrinkType.TEA, sugar);
         //when
-        String codeReceived = drinkMaker.make(tea);
-        float amountSubtracted = 0.1f - tea.price();
+        String codeReceived = DrinkMaker.make(order);
+        float amountSubtracted = 0.1f - DrinkType.TEA.getPrice();
         //then
         Assertions.assertEquals("M:Missing " + -amountSubtracted + "€" , codeReceived);
     }
@@ -113,12 +101,23 @@ public class DrinkMakerTest {
     @Test
     public void order_orange_juice_should_make_orange_juice() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.6f);
-        drinkMaker.setMoney(money);
-
+        Order order = Order.orderDrink(money, DrinkType.ORANGE);
         //when
-        String codeReceived = drinkMaker.make(new Orange());
+        String codeReceived = DrinkMaker.make(order);
+        //then
+        Assertions.assertEquals("O::", codeReceived);
+    }
+
+    @Test
+    public void order_orange_juice_extra_hot_should_not_make_extra_hot_juice() {
+        //given
+        Money money = new Money(0.6f);
+        DrinkType drinkType = DrinkType.ORANGE;
+        drinkType.setExtraHot(true);
+        Order order = Order.orderDrink(money, drinkType);
+        //when
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("O::", codeReceived);
     }
@@ -126,13 +125,12 @@ public class DrinkMakerTest {
     @Test
     public void order_tea_extra_hot_should_make_a_tea_extra_hot() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.4f);
-        drinkMaker.setMoney(money);
-        Tea tea = new Tea();
-        tea.setExtraHot(true);
+        DrinkType drinkType = DrinkType.TEA;
+        drinkType.setExtraHot(true);
+        Order order = Order.orderDrink(money, drinkType);
         //when
-        String codeReceived = drinkMaker.make(tea);
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("Th::", codeReceived);
     }
@@ -140,14 +138,13 @@ public class DrinkMakerTest {
     @Test
     public void order_coffee_extra_hot_with_1_sugar() {
         //given
-        DrinkMaker drinkMaker = new DrinkMaker();
         Money money = new Money(0.6f);
         Sugar sugar = new Sugar(1);
-        drinkMaker.setMoney(money);
-        Coffee coffee = new Coffee();
-        coffee.setExtraHot(true);
+        DrinkType drinkType = DrinkType.COFFEE;
+        drinkType.setExtraHot(true);
+        Order order = Order.orderDrink(money, drinkType, sugar);
         //when
-        String codeReceived = drinkMaker.make(coffee, sugar);
+        String codeReceived = DrinkMaker.make(order);
         //then
         Assertions.assertEquals("Ch:1:0", codeReceived);
     }

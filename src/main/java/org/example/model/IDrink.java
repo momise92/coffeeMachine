@@ -1,7 +1,7 @@
 package org.example.model;
 
-public interface Drink {
+public interface IDrink {
 
     String getCode();
-    float price();
+    float getPrice();
 }

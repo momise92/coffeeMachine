@@ -1,7 +1,7 @@
 package org.example.model;
 
 
-public class Tea implements Drink, ExtraHotInterface {
+public class Tea implements IDrink, ExtraHotInterface {
     private final String CODE = "T";
     private boolean extraHot = false;
 
@@ -14,7 +14,7 @@ public class Tea implements Drink, ExtraHotInterface {
     }
 
     @Override
-    public float price() {
+    public float getPrice() {
         return 0.4f;
     }
 
